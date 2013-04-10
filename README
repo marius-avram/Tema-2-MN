@@ -1,0 +1,33 @@
+Avram 
+Marius
+314CB 
+
+--Task 1--
+
+ Am deschis fisierul dat ca parametru pentru citire. Apoi am citit cu un for informatiile necesare si anume: numarul paginii respective, numarul de linkuri catre alte pagini si linkurile catre paginile adiacente. Imediat dupa citirea continutului fiecarei pagini am eliminat linkurile duplicate(care duc spre aceeasi pagina) si care ar trebui sa fie considerate ca un singur link. In cazul in care se regasesc linkuri catre pagina curenta acestea se elimina. Se actualizeaza gradul exterior al paginii pe diagonala matricii K si se completeaza matricea de adiacenta.  
+ Dupa citirea tuturor datelor se calculeaza matricea M. Se initializeaza fiecare element din vectorul coloana R cu 1/pag (1/N). Si R anterior acestuia care in mod normal nu exista se intializeaza cu zero. In cele din urma se aplica formula de recurenta data si la fiecare pas se actualizeaza R anterior (R2 in functie). Calculul se va opri atunci cand norma diferentei dintre cei doi vectori coloana este mai mica decat eps - dat ca parametru.
+
+--Task 2--
+
+ Functii aditionale: 
+
+ - factQR (localizata in fisierul factQR.m) - Se realizeaza factorizarea matricii A=QR dupa algoritmul Gram-Schmidt. La inceput am calculat termenul R(1,1) si vectorul coloana Q1 pentru ca avem nevoie de termenii itiali pentru a aplica formulele, datorita faptului ca acestea sunt formule de recurenta. 
+ - RezST (localizata in fisierul RezST.m) - Rezolva un sistem triunghiular superior. 
+ - Inversa (localizata in fisierul Inversa.m) - In acesta functie se aplica pentru inceput descompunerea QR prin apelarea functiei factQR. Inversa lui Q= Q', deoarece este o baza ortogonala. Obtinem n sisteme de ecuatii superior triunghiulare de forma 
+   
+    R*(x1 x2 ... xn)=Q' , 
+    unde (x1 x2 .. xn) sunt vectorii coloana ai inversei matricii A.  
+   
+ Se rezolva cele n sisteme de ecuatii si se obtine astfel inversa. 
+
+ Functia Algebraic.m: 
+ 
+  Modul de citire al datelor este asemanator cu cel de la taskul 1. Se calculeaza M si de data aceasta, insa se aplica algoritmul de aflare al inversei din functia 'Inversa'. Se calculeaza si inversa pentru termenul (I-d*M) tot cu algoritmul 'Inversa'. Si apoi se aplica formula in urma careia obtinem vectorul coloana cu Pagerankingul fiecarei pagini. 
+
+-- Task 3 -- 
+
+  Se apeleaza cele doua functii scrise anterior si rezultatul lor este pastrat in doi vectori coloana care sunt scrisi in fisierul de iesire conform cerintei. Deoarece val1 si val2 se afla la sfarsitul fisierului am sarit peste cele n+1 linii cu functia fgets si apoi am citit valorile necesare pentru aflarea rezultatului functiei membru.
+  Pentru a avea inidicii in ordinea ceruta de cerinta am hotarat sa fac doar o sortarea a indicilor si nu a vectorului cu rezultate. Metoda de sortare folosita este Metoda Bulelor. Se aplica conditiile din functia membru si in functie de valoarea pagerankingului se actualizeaza rezultatul curent(rez). In cazul in care x se afla in intervalul inchis [a,b] se afla a si b. Nu am aplicat nici o metoda de rezolvare a unui sistem de ecuatii prezentata la curs pentru ca rezolvarea acestuia este simpla si poate fi facuta dupa niste formule simple: 
+     a=(1/(val1-val2)); 
+     b=-a*val1;  
+ In final se face afisarea (aliniata la dreapta) a rezultatelor obtinute. Dupa terminarea procesului va aparea in terminal mesajul "Toate informatiile au fost scrise in fisierul ...".
